@@ -23,7 +23,7 @@
 
     </style>
 </head>
-<body class="bg-slate-900 m-3 h-screen flex flex-col">
+<body class="bg-slate-900 p-4 h-screen flex flex-col gap-8">
     <header class="bg-gray-700 rounded-lg mb-5">
         <nav>
             <div id="nav" class="flex items-center justify-center p-32 bg-fixed bg-no-repeat bg-cover bg-center rounded-md">
@@ -37,9 +37,23 @@
     <div class="bg-gray-700 p-8 rounded-md h-[500px] overflow-scroll w-fit flex-wrap scrollbar">
         <h1 class="text-center text-slate-100 text-2xl mb-10 font-bold">Search by tags</h1>
         <div id="filters" class="flex flex-col gap-8 flex-wrap"></div>
+    
+    <div class="flex">
+        <div class="flex flex-col">
+            <div class="flex mb-8">
+                <input class="p-2 rounded-tl-md rounded-bl-md bg-gray-700 font-bold text-slate-200" type="text" placeholder="Search for a recipe">
+                <button class="p-2 bg-slate-100 rounded-tr-md rounded-br-md cursor-pointer hover:bg-slate-600 hover:text-slate-100 transition-all duration-300">Search</button>
+            </div>
+            <div class="bg-gray-700 p-8 rounded-md h-[500px] overflow-scroll w-fit flex-wrap scrollbar">
+                <h1 class="text-center text-slate-100 text-2xl mb-10 font-bold">Search by tags</h1>
+                <div id="filters" class="flex flex-col gap-8 flex-wrap"></div>
+            </div>
+        </div>
+        <main id="card-container" class="bg-gray-700 p-4 rounded-md flex gap-12 flex-wrap justify-center">
+        </main>
     </div>
 
-    <footer class="bg-gray-700 p-2 mt-auto text-white flex place-content-between">
+    <footer class="bg-gray-700 p-2 mt-auto text-white flex place-content-between rounded-md">
         <p>Made by: MountainSpiritq, Atoti2, NKkrisz</p>
         <p>Using: TailwindCSS & dummyJSON</p>
     </footer>
