@@ -23,6 +23,8 @@ function renderCards(data) {
             <div class="card-content">
                 <h2 class="card-title">${recipe.name}</h2>
                 <p class="card-description">${recipe.tags}</p>
+                <button class="p-2 bg-slate-600 rounded cursor-pointer hover:text-slate-600 hover:bg-slate-100 transition-all duration-300">More info</button>
+
             </div>
         `;
         cardContainer.appendChild(card);
