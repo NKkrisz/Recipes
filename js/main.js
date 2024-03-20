@@ -8,14 +8,14 @@ async function getRecipes() {
 
 function getNavbarBackground(data) {
     const randomImage = data.recipes[Math.floor(Math.random() * data.recipes.length)].image;
-    console.log(randomImage);
+    // console.log(randomImage);
     document.querySelector('#nav').classList.add(`bg-[url('${randomImage}')]`)
 }
 
 function renderCards(data) {
     const cardContainer = document.querySelector("#card-container");
     data.recipes.forEach(recipe => {
-        console.log(recipe);
+        // console.log(recipe);
         const card = document.createElement("div");
         card.classList.add("card", "w-1/4", "bg-slate-800", "p-4", "rounded-lg", "shadow-lg", "text-white");
         card.innerHTML = `

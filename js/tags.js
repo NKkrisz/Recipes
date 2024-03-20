@@ -8,7 +8,7 @@ function renderTags(data){
     const container = document.getElementById('filters')
     data.forEach((item) => {
         container.innerHTML += `
-        <button class="text-slate-100 font-bold font-mono duration-300 transition-all hover:bg-sky-700 bg-sky-700/60 rounded-md p-3">${item}</button>
+        <button class="text-slate-100 font-bold font-mono duration-300 transition-all hover:bg-sky-700 bg-sky-700/60 rounded-md p-3 tagItem">${item}</button>
         `
     })
 }
