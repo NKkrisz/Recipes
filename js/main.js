@@ -8,14 +8,14 @@ async function getRecipes() {
 
 function getNavbarBackground(data) {
     const randomImage = data.recipes[Math.floor(Math.random() * data.recipes.length)].image;
-    console.log(randomImage);
+    // console.log(randomImage);
     document.querySelector('#nav').classList.add(`bg-[url('${randomImage}')]`)
 }
 
 function renderCards(data) {
     const cardContainer = document.querySelector("#card-container");
     data.recipes.forEach(recipe => {
-        console.log(recipe);
+        // console.log(recipe);
         const card = document.createElement("div");
         card.classList.add("card", "w-1/4", "bg-slate-800", "p-4", "rounded-lg", "shadow-lg", "text-white");
         card.innerHTML = `
@@ -24,11 +24,19 @@ function renderCards(data) {
                 <h2 class="card-title">${recipe.name}</h2>
                 <p class="card-description">${recipe.tags}</p>
                 <button class="p-2 bg-slate-600 rounded cursor-pointer hover:text-slate-600 hover:bg-slate-100 transition-all duration-300">More info</button>
-
             </div>
         `;
         cardContainer.appendChild(card);
     });
 }
+
+async function searchRecipes() {
+    const response = await fetch(`https://dummyjson.com/recipes/search?q=${document.querySelector("#search-input").value}`);
+    const data = await response.json();
+    document.querySelectorAll(".card").forEach(card => card.remove());
+    renderCards(data)
+}
+
+document.querySelector("#search-button").addEventListener("click", searchRecipes);
 
 getRecipes()
