@@ -5,7 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <script type="module" src="js/tags.js"></script>
     <title>Recipes</title>
+    <style>
+    ::-webkit-scrollbar {
+        width: 15px;
+    }
+
+    ::-webkit-scrollbar-track {
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: gray;
+        border-radius: 10px;
+    }
+
+    </style>
 </head>
 <body class="bg-slate-900 m-3">
     <header class="bg-gray-700 rounded-lg mb-5">
@@ -17,20 +33,9 @@
           
         </nav>
     </header>
-    <div class="bg-gray-700 p-8 rounded-md flex gap-12 flex-wrap justify-center">
-        <button class="text-slate-100 font-bold font-mono hover:border-slate-100 duration-300 transition-all border-b-2 border-gray-700">Pakistani</button>
-        <button class="text-slate-100 font-bold font-mono">Indiani</button>
-        <button class="text-slate-100 font-bold font-mono">Hungariani</button>
-        <button class="text-slate-100 font-bold font-mono">Ciganyi</button>
-        <button class="text-slate-100 font-bold font-mono">Ciganyi</button>
-        <button class="text-slate-100 font-bold font-mono">Ciganyi</button>
-        <button class="text-slate-100 font-bold font-mono">Ciganyi</button>
-        <button class="text-slate-100 font-bold font-mono">Ciganyi</button>
-        <button class="text-slate-100 font-bold font-mono">Ciganyi</button>
-        <button class="text-slate-100 font-bold font-mono">Ciganyi</button>
-        <button class="text-slate-100 font-bold font-mono">Ciganyi</button>
-        <button class="text-slate-100 font-bold font-mono">Ciganyi</button>
-        <button class="text-slate-100 font-bold font-mono">Ciganyi</button>
+    <div class="bg-gray-700 p-8 rounded-md h-[500px] overflow-scroll w-fit flex-wrap scrollbar">
+        <h1 class="text-center text-slate-100 text-2xl mb-10 font-bold">Search by tags</h1>
+        <div id="filters" class="flex flex-col gap-8 flex-wrap"></div>
     </div>
 
     <script src="js/fetch.js"></script>
