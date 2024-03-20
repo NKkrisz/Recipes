@@ -6,7 +6,7 @@ export async function filterTags(func, query){
 
 function filteredTags(data){
 
-    console.log(data);
+    console.log("pizza:", data);
 }
 
 filterTags(filteredTags, "Pizza")
