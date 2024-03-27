@@ -30,7 +30,10 @@ function renderCards(data) {
                     <h2 class="card-title text-xl font-mono my-5">${recipe.name}</h2>
                     <p class="card-description italic font-bold mb-3">${recipe.tags}</p>
                 </div>
-                <button class="p-2 bg-slate-600 rounded cursor-pointer hover:text-slate-600 hover:bg-slate-100 transition-all duration-300">More info</button>
+                <div>
+                    <button class="p-2 bg-slate-600 rounded cursor-pointer hover:text-slate-600 hover:bg-slate-100 transition-all duration-300 font-bold">More info</button>
+                    <button id="save" class="p-2 bg-sky-700 rounded cursor-pointer hover:text-slate-900 hover:bg-sky-100 transition-all duration-300 font-bold">Save recipe</button>
+                </div>
         `;
         cardContainer.appendChild(card);
     });
