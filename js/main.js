@@ -17,14 +17,14 @@ function renderCards(data) {
     data.recipes.forEach(recipe => {
         // console.log(recipe);
         const card = document.createElement("div");
-        card.classList.add("card", "w-1/4", "bg-slate-800", "p-4", "rounded-lg", "shadow-lg", "text-white");
+        card.classList.add("card", "bg-slate-800", "p-4", "rounded-lg", "shadow-lg", "text-white", "w-72", "flex", "flex-col", "justify-between");
         card.innerHTML = `
-            <img src="${recipe.image}" alt="${recipe.name}" class="card-image/>
-            <div class="card-content">
-                <h2 class="card-title">${recipe.name}</h2>
-                <p class="card-description">${recipe.tags}</p>
+                <div>
+                    <img src="${recipe.image}" alt="${recipe.name}" class="card-image rounded-md"/>
+                    <h2 class="card-title text-xl font-mono my-5">${recipe.name}</h2>
+                    <p class="card-description italic font-bold mb-3">${recipe.tags}</p>
+                </div>
                 <button class="p-2 bg-slate-600 rounded cursor-pointer hover:text-slate-600 hover:bg-slate-100 transition-all duration-300">More info</button>
-            </div>
         `;
         cardContainer.appendChild(card);
     });
