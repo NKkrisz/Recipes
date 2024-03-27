@@ -50,19 +50,20 @@ function saveFavorite(recipe){
 
     if(!list.includes(saved)){
         list.push(saved)
-        localStorage.setItem('savedRecipes', list)
+        localStorage.setItem('savedRecipes', JSON.stringify(list))
     }else{
         list.pop(saved)
-        localStorage.setItem('savedRecipes', list)
+        localStorage.setItem('savedRecipes', JSON.stringify(list))
     }
 
     if(recipe.innerText != "Remove save"){
         recipe.innerText = "Remove save"
     }else{
         recipe.innerText = "Save recipe"
-    }   
+    }
+   
+    
 }
-
 document.querySelector("#search-button").addEventListener("click", searchRecipes);
 
 getRecipes()
