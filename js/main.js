@@ -47,19 +47,22 @@ async function searchRecipes() {
 let list = []
 function saveFavorite(recipe){
     const saved = recipe.parentElement.parentElement.id
+
     if(!list.includes(saved)){
         list.push(saved)
+        localStorage.setItem('savedRecipes', list)
+    }else{
+        list.pop(saved)
+        localStorage.setItem('savedRecipes', list)
     }
 
-    if(list.includes(saved)){
-        list.pop(saved)
-    }
-    recipe.innerText = "Saved"
-    recipe.addEventListener('mouseover', () => recipe.innerText = "Remove save")
-    recipe.addEventListener('mouseleave', () => recipe.innerText = "Saved")
- 
-    localStorage.setItem('savedRecipes', JSON.stringify(list))
+    if(recipe.innerText != "Remove save"){
+        recipe.innerText = "Remove save"
+    }else{
+        recipe.innerText = "Save recipe"
+    }   
 }
+
 document.querySelector("#search-button").addEventListener("click", searchRecipes);
 
 getRecipes()
