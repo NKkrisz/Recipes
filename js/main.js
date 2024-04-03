@@ -29,7 +29,7 @@ function renderCards(data) {
                     <p class="card-description">${recipe.tags}</p>
                 </div>
                 <div class="flex gap-2">
-                    <label for="tw-modal" class="more-info">More Info</label>
+                    <label for="tw-modal" onclick="showModal(this)" class="more-info">More Info</label>
                     <input type="checkbox" id="tw-modal" class="peer fixed appearance-none opacity-0">
         
                     <label for="tw-modal" class="pointer-events-none invisible fixed inset-0 flex cursor-pointer items-center
@@ -38,8 +38,8 @@ function renderCards(data) {
                     peer-checked:opacity-100 peer-checked:[&>*]:translate-y-0 peer-checked[&>*]:scale-100">
                 
                         <label class="custom-modal" for="">
-                            <h3 class=" FONT-BOLD ">MODAL WORKIN'</h3>
-                            <img class="rounded" src="" alt="">
+                            <h3 class=" FONT-BOLD font-bold text-xl mb-5">MODAL WORKIN'</h3>
+                            <img id="modalImg" class="rounded" src="" alt="">
                             <p class="py-3"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos accusamus ad nulla, hic eius repudiandae est ut beatae. Voluptate illum sed consequatur sequi ex eaque pariatur maiores ea dolor. Explicabo.</p>
                         </label>
                     
