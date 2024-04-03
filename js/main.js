@@ -29,7 +29,7 @@ function renderCards(data) {
                 </div>
                 <div class="flex gap-2">
                     
-                        <label for="tw-modal" class="flex-1 cursor-pointer rounded bg-black px-4 py-4 text-center text-white active:slate-400">MORE INFO</label>
+                        <label for="tw-modal" class="flex-1 cursor-pointer rounded px-4 py-4 text-center bg-slate-600 rounded cursor-pointer hover:text-slate-900 hover:bg-sky-100 transition-all duration-300 font-bold">MORE INFO</label>
                         <input type="checkbox"  id="tw-modal" class="peer fixed appearance-none opacity-0">
             
                         <label for="tw-modal" class="pointer-events-none invisible fixed inset-0 flex cursor-pointer items-center
@@ -38,8 +38,9 @@ function renderCards(data) {
                         peer-checked:opacity-100 peer-checked:[&>*]:translate-y-0 peer-checked[&>*]:scale-100">
                     
                             <label class="max-h-[calc{100vh - 5em}] h-fit max-w-lg scale-90 overflow-auto overscroll-contain
-                            rounded-md bg-white p-6 text-black shadow-2xl transition z-40" for="">
+                            rounded-md bg-white p-6 text-black shadow-2xl transition z-50" for="">
                                 <h3 class=" FONT-BOLD ">MODAL WORKIN'</h3>
+                                <img class="rounded" src="" alt="">
                                 <p class="py-3"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos accusamus ad nulla, hic eius repudiandae est ut beatae. Voluptate illum sed consequatur sequi ex eaque pariatur maiores ea dolor. Explicabo.</p>
                             </label>
                         </label>
