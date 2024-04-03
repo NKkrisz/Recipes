@@ -25,33 +25,41 @@ function renderCards(data) {
         const card = document.createElement("div");
         card.id = recipe.id
         card.classList.add("card", "bg-slate-800", "p-4", "rounded-lg", "shadow-lg", "text-white", "w-72", "flex", "flex-col", "justify-between");
-        card.innerHTML = `
-                <div>
-                    <img src="${recipe.image}" alt="${recipe.name}" class="card-image rounded-md"/>
-                    <h2 class="card-title">${recipe.name}</h2>
-                    <p class="card-description">${recipe.tags}</p>
-                    <p class="hidden">${recipe.instructions}</p>
-                </div>
-                <div class="flex gap-2">
-                    <label for="tw-modal" onclick="showModal(this)" class="more-info">More Info</label>
+        card.innerHTML = `    
+        <img src="${recipe.image}" alt="${recipe.name}" class="card-image rounded-md"/>
+        <div class="flex flex-col gap-2 h-full place-content-between">
+            <h2 class="card-title">${recipe.name}</h2>
+            
+            <div className="flex flex-col">
+                <p class="card-description"></p>
+                <p id="instruction" class="hidden">${recipe.instructions}</p>
+                
+                <div className="flex">
+                    <label for="tw-modal" class="more-info">More Info</label>
                     <input type="checkbox" id="tw-modal" class="peer fixed appearance-none opacity-0">
-        
+                
                     <label for="tw-modal" class="pointer-events-none invisible fixed inset-0 flex cursor-pointer items-center
                     justify-center overflow-hidden overscroll-contain bg-slate-700/30 opacity-0
                     transition-all duration-200 ease-in-out peer-checked:pointer-events-auto peer-checked:visible
                     peer-checked:opacity-100 peer-checked:[&>*]:translate-y-0 peer-checked[&>*]:scale-100">
                 
-                        <label class="custom-modal" for="">
+                    <label class="custom-modal for="">
                             <h3 class=" FONT-BOLD font-bold text-xl mb-5">MODAL WORKIN'</h3>
                             <img id="modalImg" class="rounded" src="" alt="">
-                            <p id="instruction" class="py-3 text-justify font-mono font-semibold"></p>
+                            <p id="instructions" class="py-3 text-justify font-mono font-semibold"></p>
                         </label>
-                    
+                
                     </label>
-                    
+                
                     <button id="save" onclick="saveFavorite(this)" class="save-recipe">Save recipe</button>
                 </div>
-        `;
+            </div>
+        </div>
+    `;
+        recipe.tags.forEach(tag => {
+            card.querySelector('.card-description').innerHTML += `<span class="card-tag">${tag}</span>`
+        });
+        card.querySelector(".more-info").addEventListener("click", () => showModal(recipe));
         cardContainer.appendChild(card);
     });
 }

@@ -55,6 +55,7 @@ function renderCards(data) {
             card.querySelector('.card-description').innerHTML += `<span class="card-tag">${tag}</span>`
         });
         card.querySelector(".more-info").addEventListener("click", () => showModal(recipe));
+        card.querySelector(".more-info").addEventListener("click", () => saveFavorite(recipe));
         cardContainer.appendChild(card);
     });
 }
@@ -77,7 +78,7 @@ async function searchRecipes() {
 //Save recipes into local storage to show on different page, and changes button based on status
 let list = []
 function saveFavorite(recipe){
-    const saved = recipe.parentElement.parentElement.id
+    let saved = recipe.parentElement.parentElement.parentElement.parentElement.id
 
     if(!list.includes(saved)){
         list.push(saved)
