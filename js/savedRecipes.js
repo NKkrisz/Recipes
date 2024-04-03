@@ -1,5 +1,5 @@
+let ids = JSON.parse(localStorage.getItem('savedRecipes'))
 async function showSaved(){
-    const ids = JSON.parse(localStorage.getItem('savedRecipes'))
     ids.forEach(async (id) => {
         const response = await fetch(`https://dummyjson.com/recipes/${id}`)
         const data = await response.json()
@@ -12,13 +12,27 @@ async function showSaved(){
                     <img src="${data.image}" alt="${data.name}" class="card-image rounded-md"/>
                     <h2 class="card-title text-xl font-mono my-5">${data.name}</h2>
                     <p class="card-description italic font-bold mb-3">${data.tags}</p>
+                    <button class="text-lg font-bold text-red-600 hover:scale-105 transition-all" onclick="removeFromSaved(this)">Remove</button>
                 </div>
                
 
         `;
         container.appendChild(card); 
-   
      })
+}
+
+if(ids.length < 1){
+    document.getElementById('msg').innerHTML = "No saved recipes yet."
+}
+function removeFromSaved(recipe){
+    const targ = recipe.parentElement.parentElement.id
+    const index = ids.indexOf(targ)
+    ids.splice(index, 1)
+    document.getElementById(targ).style.display = "none"
+    localStorage.setItem('savedRecipes', JSON.stringify(ids))
+    if(ids.length < 1){
+        document.getElementById('msg').innerHTML = "No saved recipes yet."
+    }
 }
 
 showSaved()
