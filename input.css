@@ -48,6 +48,6 @@ in your terminal */
     /* Modal & More Info Button */
 
     .custom-modal{
-        @apply h-fit max-w-lg scale-90 overflow-auto overscroll-contain rounded-md bg-white p-6 text-black shadow-2xl transition z-50;
+        @apply h-fit max-w-lg scale-90 overflow-auto overscroll-contain rounded-md p-6 bg-slate-900 text-slate-100 shadow-2xl transition z-50;
     }
 }

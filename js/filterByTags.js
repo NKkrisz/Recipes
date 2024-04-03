@@ -23,6 +23,7 @@ function renderCards(data) {
     cardContainer.innerHTML = ""
     data.recipes.forEach(recipe => {
         const card = document.createElement("div");
+        card.id = recipe.id
         card.classList.add("card", "bg-slate-800", "p-4", "rounded-lg", "shadow-lg", "text-white", "w-72", "flex", "flex-col", "justify-between");
         card.innerHTML = `
                 <div>
@@ -54,6 +55,5 @@ function renderCards(data) {
         cardContainer.appendChild(card);
     });
 }
-
 
 filterTags(filteredTags, clicked)
