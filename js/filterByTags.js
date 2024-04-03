@@ -6,9 +6,9 @@ export async function filterTags(func, query){
 
 let clicked
 function filteredTags(){
-    document.querySelectorAll('.tagItem').forEach((item) => {
+    document.querySelectorAll('.filter-tag').forEach((item) => {
         item.addEventListener('click', ((data) => {
-            document.querySelectorAll('.tagItem').forEach((i) => {
+            document.querySelectorAll('.filter-tag').forEach((i) => {
                 i.classList.remove('bg-red-600')
             })
             data.target.classList.add('bg-red-600')
