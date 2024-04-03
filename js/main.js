@@ -10,8 +10,8 @@ async function getRecipes() {
 //Makes navbar have a random background image
 function getNavbarBackground(data) {
     const randomImage = data.recipes[Math.floor(Math.random() * data.recipes.length)].image;
-    document.querySelector('#nav').classList.add(`bg-[url('${randomImage}')]`)
-
+    document.querySelector('#nav').style.backgroundImage = `url('${randomImage}')`
+    
 }
 
 //Render cards: image, title, name, tags, more info button, save recipe button
