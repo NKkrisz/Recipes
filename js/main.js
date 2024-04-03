@@ -9,7 +9,7 @@ async function getRecipes() {
 function getNavbarBackground(data) {
     const randomImage = data.recipes[Math.floor(Math.random() * data.recipes.length)].image;
     document.querySelector('#nav').classList.add(`bg-[url('${randomImage}')]`)
-    
+
 }
 
 
@@ -27,8 +27,8 @@ function renderCards(data) {
                     <p class="card-description italic font-bold mb-3">${recipe.tags}</p>
                 </div>
                 <div class="flex gap-2">
-                    
-                        <label for="tw-modal" class="flex-1 cursor-pointer rounded px-4 py-4 text-center bg-slate-600 rounded cursor-pointer hover:text-slate-900 hover:bg-sky-100 transition-all duration-300 font-bold">MORE INFO</label>
+
+                        <label for="tw-modal" onclick="showModal(this)" class="flex-1 cursor-pointer rounded px-4 py-4 text-center bg-slate-600 rounded cursor-pointer hover:text-slate-900 hover:bg-sky-100 transition-all duration-300 font-bold">MORE INFO</label>
                         <input type="checkbox"  id="tw-modal" class="peer fixed appearance-none opacity-0">
             
                         <label for="tw-modal" class="pointer-events-none invisible fixed inset-0 flex cursor-pointer items-center
@@ -38,15 +38,11 @@ function renderCards(data) {
                     
                             <label class="max-h-[calc{100vh - 5em}] h-fit max-w-lg scale-90 overflow-auto overscroll-contain
                             rounded-md bg-white p-6 text-black shadow-2xl transition z-50" for="">
-                                <h3 class=" FONT-BOLD ">MODAL WORKIN'</h3>
-                                <img class="rounded" src="" alt="">
+                                <h3 class="FONT-BOLD font-bold text-xl mb-2">MODAL WORKIN'</h3>
+                                <img id="modalImg" class="rounded" src="" alt="">
                                 <p class="py-3"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos accusamus ad nulla, hic eius repudiandae est ut beatae. Voluptate illum sed consequatur sequi ex eaque pariatur maiores ea dolor. Explicabo.</p>
                             </label>
                         </label>
-                
-
-               
-
                     <button id="save" onclick="saveFavorite(this)" class="flex-1 p-2 bg-sky-700 rounded cursor-pointer hover:text-slate-900 hover:bg-sky-100 transition-all duration-300 font-bold">Save recipe</button>
                 </div>
 
@@ -54,6 +50,14 @@ function renderCards(data) {
         cardContainer.appendChild(card);
     });
 }
+
+function showModal(recipe){
+    let img = recipe.parentElement.parentElement.children[0].children[0].src;
+    let name = recipe.parentElement.parentElement.children[0].children[1].innerHTML;
+    document.getElementById('modalImg').src = img
+    document.querySelector('.FONT-BOLD').innerHTML = name
+}
+
 
 async function searchRecipes() {
     const response = await fetch(`https://dummyjson.com/recipes/search?q=${document.querySelector("#search-input").value}`);
