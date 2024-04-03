@@ -33,7 +33,7 @@ in your terminal */
         @apply bg-slate-800 p-4 rounded-lg shadow-lg text-white w-72 flex flex-col ;
     }
     .card-title{
-        @apply text-xl font-mono my-2 text-center;
+        @apply text-xl font-mono my-2 text-center text-balance;
     }
     .card-description{
         @apply italic font-bold my-2 gap-4 flex flex-wrap;
