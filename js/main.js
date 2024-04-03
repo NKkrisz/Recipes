@@ -18,7 +18,6 @@ function getNavbarBackground(data) {
 function renderCards(data) {
     const cardContainer = document.querySelector("#card-container");
     data.recipes.forEach(recipe => {
-        // console.log(recipe);
         const card = document.createElement("div");
         card.classList.add("custom-card");
         card.id = recipe.id
@@ -27,6 +26,7 @@ function renderCards(data) {
                     <img src="${recipe.image}" alt="${recipe.name}" class="card-image rounded-md"/>
                     <h2 class="card-title">${recipe.name}</h2>
                     <p class="card-description">${recipe.tags}</p>
+                    <p class="hidden">${recipe.instructions}</p>
                 </div>
                 <div class="flex gap-2">
                     <label for="tw-modal" onclick="showModal(this)" class="more-info">More Info</label>
@@ -40,7 +40,7 @@ function renderCards(data) {
                         <label class="custom-modal" for="">
                             <h3 class=" FONT-BOLD font-bold text-xl mb-5">MODAL WORKIN'</h3>
                             <img id="modalImg" class="rounded" src="" alt="">
-                            <p class="py-3"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos accusamus ad nulla, hic eius repudiandae est ut beatae. Voluptate illum sed consequatur sequi ex eaque pariatur maiores ea dolor. Explicabo.</p>
+                            <p id="instruction" class="py-3 text-justify font-mono font-semibold"></p>
                         </label>
                     
                     </label>
@@ -55,7 +55,10 @@ function renderCards(data) {
 function showModal(recipe){
     let img = recipe.parentElement.parentElement.children[0].children[0].src;
     let name = recipe.parentElement.parentElement.children[0].children[1].innerHTML;
+    let instruction = recipe.parentElement.parentElement.children[0].children[3].innerHTML;
+    
     document.getElementById('modalImg').src = img
+    document.getElementById('instruction').innerHTML = instruction
     document.querySelector('.FONT-BOLD').innerHTML = name
 }
 
