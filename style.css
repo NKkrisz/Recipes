@@ -808,10 +808,6 @@ video {
   isolation: auto;
 }
 
-.z-10 {
-  z-index: 10;
-}
-
 .float-start {
   float: inline-start;
 }
