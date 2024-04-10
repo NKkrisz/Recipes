@@ -42,7 +42,7 @@ in your terminal */
         @apply p-2 bg-slate-600 rounded cursor-pointer hover:text-slate-600 hover:bg-slate-100 transition-all duration-300 font-bold;
     }
     .save-recipe{
-        @apply p-2 bg-sky-700 rounded cursor-pointer hover:text-slate-900 hover:bg-sky-100 transition-all duration-300 font-bold;
+        @apply p-[0.4rem] bg-sky-700 rounded cursor-pointer hover:text-slate-900 hover:bg-sky-100 transition-all duration-300 font-bold ;
     }
     .card-tag{
         @apply bg-slate-600 p-1 rounded-md font-mono;
