@@ -14,15 +14,16 @@ async function getRecipes() {
     loadSaved()
 }
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     window.location.href = "login.html"
-// })
-
-
 //Makes navbar have a random background image
 function getNavbarBackground(data) {
     const randomImage = data.recipes[Math.floor(Math.random() * data.recipes.length)].image;
     document.querySelector('#nav').style.backgroundImage = `url('${randomImage}')`
+}
+
+document.getElementById('logout').addEventListener('click', logOut)
+function logOut(){
+    localStorage.removeItem("status")
+    window.location.href = "login.html"
 }
 
 //Render cards: image, title, name, tags, more info button, save recipe button
@@ -68,6 +69,10 @@ function renderCards(data) {
         });
         card.querySelector(".more-info").addEventListener("click", () => showModal(recipe));
         card.querySelector(".more-info").addEventListener("click", () => saveFavorite(recipe));
+        if(JSON.parse(localStorage.getItem("status")) == "Guest"){
+            card.querySelector('.save-recipe').disabled = true
+            card.querySelector('.save-recipe').title = "Login for this feature"
+        }
         cardContainer.appendChild(card);
     });
 }
@@ -124,4 +129,12 @@ function loadSaved(){
             list.push(id)
         })
     }
+}
+
+
+//Check if user is guest then disable view recipe button and save buttons
+
+if(JSON.parse(localStorage.getItem("status")) == "Guest"){
+    document.querySelector('#savedRecipe').style.visibility = "hidden"
+    document.getElementById('logout').innerHTML = "Login"
 }
