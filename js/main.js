@@ -8,9 +8,9 @@ async function getRecipes() {
     loadSaved()
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    window.location.href = "login.html"
-})
+// document.addEventListener('DOMContentLoaded', () => {
+//     window.location.href = "login.html"
+// })
 
 
 //Makes navbar have a random background image
@@ -91,7 +91,7 @@ function saveFavorite(recipe){
     if(!list.includes(saved)){
         list.push(saved)
         localStorage.setItem('savedRecipes', JSON.stringify(list))
-    }else{
+    } else {
         let index = list.indexOf(saved)
         list.splice(index, 1)
         localStorage.setItem('savedRecipes', JSON.stringify(list))
@@ -99,7 +99,7 @@ function saveFavorite(recipe){
     
     if(recipe.innerText != "Remove save"){
         recipe.innerText = "Remove save"
-    }else{
+    } else {
         recipe.innerText = "Save recipe"
     }
     
@@ -110,10 +110,10 @@ document.querySelector("#search-button").addEventListener("click", searchRecipes
 //Get recipes on site loads
 getRecipes()
 
-
+//Load saved recipes and change button status if they are saved
 function loadSaved(){
-        ids.forEach((id) => {   
-            document.getElementById(id).children[1].children[1].children[2].children[3].innerHTML = "Remove save"
-            list.push(id)
-        })
+    ids.forEach((id) => {   
+        (document.getElementById(id)).querySelector(".save-recipe").innerHTML = "Remove save"
+        list.push(id)
+    })
 }
