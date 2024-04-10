@@ -1,11 +1,14 @@
-//Get recipes from dummyjson API
+//Ge't recipes from dummyjson API
 async function getRecipes() {
     const response = await fetch("https://dummyjson.com/recipes");
     const data = await response.json();
     getNavbarBackground(data);
     renderCards(data);
     // console.log(data);
+    loadSaved()
 }
+
+
 
 //Makes navbar have a random background image
 function getNavbarBackground(data) {
@@ -77,24 +80,35 @@ async function searchRecipes() {
 
 //Save recipes into local storage to show on different page, and changes button based on status
 let list = []
+
+let ids = JSON.parse(localStorage.getItem('savedRecipes'))
+
 function saveFavorite(recipe){
     let saved = recipe.parentElement.parentElement.parentElement.parentElement.id
     if(!list.includes(saved)){
         list.push(saved)
         localStorage.setItem('savedRecipes', JSON.stringify(list))
     }else{
-        list.pop(saved)
+        let index = list.indexOf(saved)
+        list.splice(index, 1)
         localStorage.setItem('savedRecipes', JSON.stringify(list))
     }
-
+    
     if(recipe.innerText != "Remove save"){
         recipe.innerText = "Remove save"
     }else{
         recipe.innerText = "Save recipe"
     }
+    
 }
 
 document.querySelector("#search-button").addEventListener("click", searchRecipes);
 
 //Get recipes on site loads
 getRecipes()
+function loadSaved(){
+        ids.forEach((id) => {   
+            document.getElementById(id).children[1].children[1].children[2].children[3].innerHTML = "Remove save"
+            list.push(id)
+        })
+}
