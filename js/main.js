@@ -8,6 +8,9 @@ async function getRecipes() {
     loadSaved()
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    window.location.href = "login.html"
+})
 
 
 //Makes navbar have a random background image
@@ -106,6 +109,8 @@ document.querySelector("#search-button").addEventListener("click", searchRecipes
 
 //Get recipes on site loads
 getRecipes()
+
+
 function loadSaved(){
         ids.forEach((id) => {   
             document.getElementById(id).children[1].children[1].children[2].children[3].innerHTML = "Remove save"
