@@ -81,9 +81,9 @@ function showModal(recipe){
 
 //Searches recipes through dummyjson API
 async function searchRecipes() {
+    document.querySelector('#card-container').innerHTML = ""
     const response = await fetch(`https://dummyjson.com/recipes/search?q=${document.querySelector("#search-input").value}`);
     const data = await response.json();
-    document.querySelectorAll(".card").forEach(card => card.remove());
     renderCards(data)
 }
 
