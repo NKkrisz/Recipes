@@ -35,6 +35,7 @@ function authentication(e){
         let isValidUser = users.find(user => user.username === username && user.password === password);
         alert(isValidUser ? "User authenticated" : "Invalid credentials");
         isValidUser ? status = "Authenticated" : status = "";
+        localStorage.setItem("currentUser", username)
     } else {
         alert("Guest user");
         status = "Guest";

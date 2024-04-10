@@ -23,6 +23,7 @@ function getNavbarBackground(data) {
 document.getElementById('logout').addEventListener('click', logOut)
 function logOut(){
     localStorage.removeItem("status")
+    localStorage.removeItem("currentUser")
     window.location.href = "login.html"
 }
 
@@ -130,7 +131,6 @@ function loadSaved(){
         })
     }
 }
-
 
 //Check if user is guest then disable view recipe button and save buttons
 
