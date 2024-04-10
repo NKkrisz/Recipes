@@ -38,7 +38,7 @@ function renderCards(data) {
                         transition-all duration-200 ease-in-out peer-checked:pointer-events-auto peer-checked:visible
                         peer-checked:opacity-100 peer-checked:[&>*]:translate-y-0 peer-checked[&>*]:scale-100">
                     
-                        <label class="custom-modal for="">
+                        <label class="custom-modal" for="" >
                                 <h3 class=" FONT-BOLD font-bold text-xl mb-5">MODAL WORKIN'</h3>
                                 <img id="modalImg" class="rounded" src="" alt="">
                                 <p id="instructions" class="py-3 text-justify font-mono font-semibold"></p>
@@ -79,7 +79,6 @@ async function searchRecipes() {
 let list = []
 function saveFavorite(recipe){
     let saved = recipe.parentElement.parentElement.parentElement.parentElement.id
-
     if(!list.includes(saved)){
         list.push(saved)
         localStorage.setItem('savedRecipes', JSON.stringify(list))
