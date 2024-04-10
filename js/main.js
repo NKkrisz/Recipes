@@ -1,4 +1,10 @@
-//Ge't recipes from dummyjson API
+//Force user to login or select guest visit
+if(!localStorage.getItem("status")){
+    alert("Please Login Or Select Guest Visit!")
+    window.location.href = "login.html";
+}
+
+//Get recipes from dummyjson API
 async function getRecipes() {
     const response = await fetch("https://dummyjson.com/recipes");
     const data = await response.json();
@@ -112,8 +118,10 @@ getRecipes()
 
 //Load saved recipes and change button status if they are saved
 function loadSaved(){
-    ids.forEach((id) => {   
-        (document.getElementById(id)).querySelector(".save-recipe").innerHTML = "Remove save"
-        list.push(id)
-    })
+    if(ids){
+        ids.forEach((id) => {   
+            (document.getElementById(id)).querySelector(".save-recipe").innerHTML = "Remove save"
+            list.push(id)
+        })
+    }
 }
