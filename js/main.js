@@ -1,4 +1,10 @@
-//Ge't recipes from dummyjson API
+//Force user to login or select guest visit
+if(!localStorage.getItem("status")){
+    alert("Please Login Or Select Guest Visit!")
+    window.location.href = "login.html";
+}
+
+//Get recipes from dummyjson API
 async function getRecipes() {
     const response = await fetch("https://dummyjson.com/recipes");
     const data = await response.json();
@@ -8,15 +14,17 @@ async function getRecipes() {
     loadSaved()
 }
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     window.location.href = "login.html"
-// })
-
-
 //Makes navbar have a random background image
 function getNavbarBackground(data) {
     const randomImage = data.recipes[Math.floor(Math.random() * data.recipes.length)].image;
     document.querySelector('#nav').style.backgroundImage = `url('${randomImage}')`
+}
+
+document.getElementById('logout').addEventListener('click', logOut)
+function logOut(){
+    localStorage.removeItem("status")
+    localStorage.removeItem("currentUser")
+    window.location.href = "login.html"
 }
 
 //Render cards: image, title, name, tags, more info button, save recipe button
@@ -62,6 +70,10 @@ function renderCards(data) {
         });
         card.querySelector(".more-info").addEventListener("click", () => showModal(recipe));
         card.querySelector(".more-info").addEventListener("click", () => saveFavorite(recipe));
+        if(JSON.parse(localStorage.getItem("status")) == "Guest"){
+            card.querySelector('.save-recipe').disabled = true
+            card.querySelector('.save-recipe').title = "Login for this feature"
+        }
         cardContainer.appendChild(card);
     });
 }
@@ -75,9 +87,9 @@ function showModal(recipe){
 
 //Searches recipes through dummyjson API
 async function searchRecipes() {
+    document.querySelector('#card-container').innerHTML = ""
     const response = await fetch(`https://dummyjson.com/recipes/search?q=${document.querySelector("#search-input").value}`);
     const data = await response.json();
-    document.querySelectorAll(".card").forEach(card => card.remove());
     renderCards(data)
 }
 
@@ -112,8 +124,17 @@ getRecipes()
 
 //Load saved recipes and change button status if they are saved
 function loadSaved(){
-    ids.forEach((id) => {   
-        (document.getElementById(id)).querySelector(".save-recipe").innerHTML = "Remove save"
-        list.push(id)
-    })
+    if(ids){
+        ids.forEach((id) => {   
+            (document.getElementById(id)).querySelector(".save-recipe").innerHTML = "Remove save"
+            list.push(id)
+        })
+    }
+}
+
+//Check if user is guest then disable view recipe button and save buttons
+
+if(JSON.parse(localStorage.getItem("status")) == "Guest"){
+    document.querySelector('#savedRecipe').style.visibility = "hidden"
+    document.getElementById('logout').innerHTML = "Login"
 }

@@ -1,3 +1,8 @@
+if(!localStorage.getItem("status") || JSON.parse(localStorage.getItem("status")) == "Guest"){
+    alert("Please Login For This Feature!")
+    window.location.href = "login.html";
+}
+
 let ids = JSON.parse(localStorage.getItem('savedRecipes'))
 async function showSaved(){
     ids.forEach(async (id) => {
