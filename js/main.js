@@ -98,14 +98,19 @@ let list = []
 
 let ids = JSON.parse(localStorage.getItem('savedRecipes'))
 
+if(ids){
+    ids.forEach((data) => {
+        list.push(data)
+    })
+}
+
 function saveFavorite(recipe){
     const user = localStorage.getItem('currentUser')
     const saved = recipe.parentElement.parentElement.parentElement.parentElement.id
-
-    const isSaved = list.some(item => item.saved === saved)
+    const isSaved = list.some(item => item.saved === saved && item.user === user)
 
     if(isSaved){
-        list = list.filter(item => item.saved !== saved)
+        list = list.filter(item => item.saved!== saved || item.user!== user)
         localStorage.setItem('savedRecipes', JSON.stringify(list))
         recipe.innerText = "Save recipe"
     }else{
@@ -114,7 +119,6 @@ function saveFavorite(recipe){
         recipe.innerText = "Remove save"
     }
 }
-
 document.querySelector("#search-button").addEventListener("click", searchRecipes);
 
 //Get recipes on site loads

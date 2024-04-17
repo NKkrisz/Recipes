@@ -27,10 +27,7 @@ async function showSaved(){
         `;
         container.appendChild(card); 
         }
-        else{
-            document.getElementById('msg').innerHTML = "No saved recipes yet."
-
-        }
+        
      })
 }
 
