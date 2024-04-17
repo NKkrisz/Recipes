@@ -26,21 +26,24 @@ async function showSaved(){
 
         `;
         container.appendChild(card); 
-        }
         
-     })
+        }
+    })
 }
+let hasSaved = ids.some((item) => item.user === user)
 
-if(!ids.length){
+if(!hasSaved){
     document.getElementById('msg').innerHTML = "No saved recipes yet."
 }
+
 function removeFromSaved(recipe){
-    const targ = recipe.parentElement.parentElement.id
-    const index = ids.indexOf(targ)
+    const target = recipe.parentElement.parentElement.id
+    const index = ids.indexOf(target)
     ids.splice(index, 1)
-    document.getElementById(targ).style.display = "none"
+    document.getElementById(target).style.display = "none"
     localStorage.setItem('savedRecipes', JSON.stringify(ids))
-    if(ids.length < 1){
+    hasSaved = ids.some(item => item.user === user)
+    if(!hasSaved){
         document.getElementById('msg').innerHTML = "No saved recipes yet."
     }
 }
