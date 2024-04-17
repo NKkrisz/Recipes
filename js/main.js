@@ -99,22 +99,20 @@ let list = []
 let ids = JSON.parse(localStorage.getItem('savedRecipes'))
 
 function saveFavorite(recipe){
-    let saved = recipe.parentElement.parentElement.parentElement.parentElement.id
-    if(!list.includes(saved)){
-        list.push(saved)
+    const user = localStorage.getItem('currentUser')
+    const saved = recipe.parentElement.parentElement.parentElement.parentElement.id
+
+    const isSaved = list.some(item => item.saved === saved)
+
+    if(isSaved){
+        list = list.filter(item => item.saved !== saved)
         localStorage.setItem('savedRecipes', JSON.stringify(list))
-    } else {
-        let index = list.indexOf(saved)
-        list.splice(index, 1)
-        localStorage.setItem('savedRecipes', JSON.stringify(list))
-    }
-    
-    if(recipe.innerText != "Remove save"){
-        recipe.innerText = "Remove save"
-    } else {
         recipe.innerText = "Save recipe"
+    }else{
+        list.push({saved: saved, user: user})
+        localStorage.setItem('savedRecipes', JSON.stringify(list))
+        recipe.innerText = "Remove save"
     }
-    
 }
 
 document.querySelector("#search-button").addEventListener("click", searchRecipes);

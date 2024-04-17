@@ -3,10 +3,13 @@ if(!localStorage.getItem("status") || JSON.parse(localStorage.getItem("status"))
     window.location.href = "login.html";
 }
 
+const user = localStorage.getItem("currentUser")
+
 let ids = JSON.parse(localStorage.getItem('savedRecipes'))
 async function showSaved(){
     ids.forEach(async (id) => {
-        const response = await fetch(`https://dummyjson.com/recipes/${id}`)
+        if(id.user == user){
+        const response = await fetch(`https://dummyjson.com/recipes/${id.saved}`)
         const data = await response.json()
         const container = document.getElementById('savedRecipes')   
         const card = document.createElement("div");
@@ -23,11 +26,12 @@ async function showSaved(){
 
         `;
         container.appendChild(card); 
-     })
-}
+        }
+        else{
+            document.getElementById('msg').innerHTML = "No saved recipes yet."
 
-if(ids.length < 1){
-    document.getElementById('msg').innerHTML = "No saved recipes yet."
+        }
+     })
 }
 function removeFromSaved(recipe){
     const targ = recipe.parentElement.parentElement.id
