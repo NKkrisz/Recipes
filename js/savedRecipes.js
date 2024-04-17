@@ -33,6 +33,10 @@ async function showSaved(){
         }
      })
 }
+
+if(!ids.length){
+    document.getElementById('msg').innerHTML = "No saved recipes yet."
+}
 function removeFromSaved(recipe){
     const targ = recipe.parentElement.parentElement.id
     const index = ids.indexOf(targ)
