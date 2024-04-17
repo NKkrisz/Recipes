@@ -128,8 +128,10 @@ getRecipes()
 function loadSaved(){
     if(ids){
         ids.forEach((id) => {   
-            (document.getElementById(id)).querySelector(".save-recipe").innerHTML = "Remove save"
-            list.push(id)
+            if(id.user == user){
+                (document.getElementById(id.saved)).querySelector(".save-recipe").innerHTML = "Remove save"
+                list.push(id)
+            }
         })
     }
 }
