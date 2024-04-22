@@ -94,31 +94,36 @@ async function searchRecipes() {
 }
 
 //Save recipes into local storage to show on different page, and changes button based on status
-let list = []
+
 
 let ids = JSON.parse(localStorage.getItem('savedRecipes'))
 
-if(ids){
-    ids.forEach((data) => {
-        list.push(data)
-    })
+
+let list = JSON.parse(localStorage.getItem('savedRecipes')) || [];
+
+function updateSavedRecipes(userList) {
+    const user = localStorage.getItem('currentUser');
+    localStorage.setItem(`savedRecipes_${user}`, JSON.stringify(userList));
 }
 
-function saveFavorite(recipe){
-    const user = localStorage.getItem('currentUser')
-    const saved = recipe.parentElement.parentElement.parentElement.parentElement.id
-    const isSaved = list.some(item => item.saved === saved && item.user === user)
+function saveFavorite(recipe) {
+    const user = localStorage.getItem('currentUser');
+    const saved = recipe.parentElement.parentElement.parentElement.parentElement.id;
+    let userList = JSON.parse(localStorage.getItem(`savedRecipes_${user}`)) || [];
+    const existingIndex = userList.findIndex(item => item.saved === saved);
 
-    if(isSaved){
-        list = list.filter(item => item.saved!== saved || item.user!== user)
-        localStorage.setItem('savedRecipes', JSON.stringify(list))
-        recipe.innerText = "Save recipe"
-    }else{
-        list.push({saved: saved, user: user})
-        localStorage.setItem('savedRecipes', JSON.stringify(list))
-        recipe.innerText = "Remove save"
+    if (existingIndex !== -1) {
+        userList.splice(existingIndex, 1);
+        updateSavedRecipes(userList);
+        recipe.innerText = "Save recipe";
+    } else {
+        userList.push({ saved: saved });
+        updateSavedRecipes(userList);
+        recipe.innerText = "Remove save";
     }
 }
+
+
 document.querySelector("#search-button").addEventListener("click", searchRecipes);
 
 //Get recipes on site loads
@@ -126,12 +131,13 @@ getRecipes()
 
 //Load saved recipes and change button status if they are saved
 function loadSaved(){
-    if(ids){
-        ids.forEach((id) => {   
-            if(id.user == user){
+    const user = localStorage.getItem('currentUser')
+    const userList = JSON.parse(localStorage.getItem(`savedRecipes_${user}`)) || [];
+
+    if(userList){
+        userList.forEach((id) => { 
                 (document.getElementById(id.saved)).querySelector(".save-recipe").innerHTML = "Remove save"
                 list.push(id)
-            }
         })
     }
 }

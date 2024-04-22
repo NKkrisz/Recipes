@@ -3,12 +3,12 @@ if(!localStorage.getItem("status") || JSON.parse(localStorage.getItem("status"))
     window.location.href = "login.html";
 }
 
-const user = localStorage.getItem("currentUser")
+const user = localStorage.getItem("currentUser") 
+const userList = JSON.parse(localStorage.getItem(`savedRecipes_${user}`)) || [];
 
-let ids = JSON.parse(localStorage.getItem('savedRecipes'))
 async function showSaved(){
-    ids.forEach(async (id) => {
-        if(id.user == user){
+    userList.forEach(async (id) => {
+    
         const response = await fetch(`https://dummyjson.com/recipes/${id.saved}`)
         const data = await response.json()
         const container = document.getElementById('savedRecipes')   
@@ -27,25 +27,31 @@ async function showSaved(){
         `;
         container.appendChild(card); 
         
-        }
+        
     })
 }
-let hasSaved = ids.some((item) => item.user === user)
 
-if(!hasSaved){
+
+if(userList.length < 1 ){
     document.getElementById('msg').innerHTML = "No saved recipes yet."
 }
 
-function removeFromSaved(recipe){
-    const target = recipe.parentElement.parentElement.id
-    const index = ids.indexOf(target)
-    ids.splice(index, 1)
-    document.getElementById(target).style.display = "none"
-    localStorage.setItem('savedRecipes', JSON.stringify(ids))
-    hasSaved = ids.some(item => item.user === user)
-    if(!hasSaved){
-        document.getElementById('msg').innerHTML = "No saved recipes yet."
+function removeFromSaved(recipe) {
+    const user = localStorage.getItem('currentUser');
+    let savedRecipes = JSON.parse(localStorage.getItem(`savedRecipes_${user}`)) || [];
+    const targetId = recipe.parentElement.parentElement.id;
+    const index = savedRecipes.findIndex(item => item.saved === targetId);
+
+    if (index !== -1) {
+        savedRecipes.splice(index, 1);
+        localStorage.setItem(`savedRecipes_${user}`, JSON.stringify(savedRecipes));
+        document.getElementById(targetId).style.display = "none";
+
+        if (savedRecipes.length === 0) {
+            document.getElementById('msg').innerHTML = "No saved recipes yet.";
+        }
     }
 }
+
 
 showSaved()
