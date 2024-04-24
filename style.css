@@ -852,6 +852,10 @@ video {
   clear: none;
 }
 
+.m-48 {
+  margin: 12rem;
+}
+
 .m-5 {
   margin: 1.25rem;
 }
@@ -933,6 +937,10 @@ video {
   display: inline-flex;
 }
 
+.\!table {
+  display: table !important;
+}
+
 .table {
   display: table;
 }
@@ -985,6 +993,10 @@ video {
   display: inline-grid;
 }
 
+.\!contents {
+  display: contents !important;
+}
+
 .contents {
   display: contents;
 }
@@ -1005,8 +1017,8 @@ video {
   height: 100%;
 }
 
-.h-screen {
-  height: 100vh;
+.min-h-screen {
+  min-height: 100vh;
 }
 
 .w-72 {

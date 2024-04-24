@@ -19,12 +19,15 @@ async function showSaved(){
                 <div>
                     <img src="${data.image}" alt="${data.name}" class="card-image rounded-md"/>
                     <h2 class="card-title text-xl font-mono my-5">${data.name}</h2>
-                    <p class="card-description italic font-bold mb-3">${data.tags}</p>
+                    <p class="card-description italic font-bold mb-3"></p>
                     <button class="text-lg font-bold text-red-600 hover:scale-105 transition-all" onclick="removeFromSaved(this)">Remove</button>
                 </div>
                
 
         `;
+        data.tags.forEach(tag => {
+            card.querySelector('.card-description').innerHTML += `<span class="card-tag">${tag}</span>`
+        });
         container.appendChild(card); 
         
         

@@ -7,6 +7,24 @@ document.querySelectorAll('button').forEach(button => {
   button.addEventListener('click', authentication);
 });
 
+function checkPassword(password){
+    if(password.length < 5){
+        return "Password is too short"
+    }else{
+        return "Correct password"
+    }
+}
+
+function checkUsername(username){
+    if(username.length < 5){
+        return "Username is too short"
+    }else{
+        return "Correct username"
+    }
+}
+
+module.exports = {checkPassword, checkUsername}
+
 function authentication(e){
     let username = document.querySelector("#username").value;
     let password = document.querySelector("#password").value;
@@ -16,8 +34,8 @@ function authentication(e){
     
     // Register handling
     if(e.target.textContent == "Register"){
-        if(username.length === 0 || password.length === 0){
-            alert("Please Fill In All Fields");
+        if(checkUsername(username) || checkPassword(password)){
+            alert(checkPassword(password) ||checkUsername(username));
             return;
         };
 
@@ -43,3 +61,5 @@ function authentication(e){
     if(!status) return;
     localStorage.setItem("status", JSON.stringify(status));
 };
+
+module.exports = {authentication}

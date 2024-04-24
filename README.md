@@ -22,4 +22,9 @@
 
 ### We used trello to assign tasks to project members
 ![Trello image](trello.png)
+
+### We used Jest to test the program
+![Tests image](tests.png)
+
+[**Visit page**](https://nkkrisz.github.io/Recipes/index.html)
 ### Made by: **Szlávik Bálint, Nagy-Kőszegi Krisztián, Tóth Kristóf**

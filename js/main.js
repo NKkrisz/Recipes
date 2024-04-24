@@ -78,11 +78,13 @@ function renderCards(data) {
     });
 }
 
+
 function showModal(recipe){
     document.getElementById('modalImg').src = recipe.image
     document.getElementById('instructions').innerHTML = recipe.instructions.join(" ")
     document.querySelector('.FONT-BOLD').innerHTML = recipe.name
 }
+
 
 
 //Searches recipes through dummyjson API
