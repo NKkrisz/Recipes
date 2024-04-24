@@ -4,11 +4,10 @@ jest.mock('../js/userManager.js', () => ({
 }));
 
 
-
 const { checkPassword, checkUsername } = require('../js/userManager.js');
 
 describe('checkPassword function', () => {
-    test('it should return undefined for valid password length', () => {
+    test('it should return true for valid password length', () => {
         const result = checkPassword('validPassword');
         expect(result).toBeUndefined();
     });
@@ -16,7 +15,7 @@ describe('checkPassword function', () => {
 });
 
 describe('checkUsername function', () => {
-    test('it should return undefined for valid username length', () => {
+    test('it should return true for valid username length', () => {
         const result = checkUsername('validUsername');
         expect(result).toBeUndefined();
     });
