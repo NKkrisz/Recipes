@@ -8,22 +8,16 @@ document.querySelectorAll('button').forEach(button => {
 });
 
 function checkPassword(password){
-    if(password.length < 5){
-        return "Password is too short"
-    }else{
-        return "Correct password"
-    }
+    return password.length < 5 
 }
 
 function checkUsername(username){
-    if(username.length < 5){
-        return "Username is too short"
-    }else{
-        return "Correct username"
-    }
+    return username.length < 5
 }
 
-module.exports = {checkPassword, checkUsername}
+if (typeof module === 'object') {
+    module.exports = {checkPassword, checkUsername}
+}
 
 function authentication(e){
     let username = document.querySelector("#username").value;
@@ -35,7 +29,7 @@ function authentication(e){
     // Register handling
     if(e.target.textContent == "Register"){
         if(checkUsername(username) || checkPassword(password)){
-            alert(checkPassword(password) ||checkUsername(username));
+            alert("Username or password must be at least 6 characters.");
             return;
         };
 
@@ -62,4 +56,3 @@ function authentication(e){
     localStorage.setItem("status", JSON.stringify(status));
 };
 
-module.exports = {authentication}
