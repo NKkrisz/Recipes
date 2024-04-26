@@ -60,6 +60,10 @@ function renderCards(data) {
             card.querySelector('.card-description').innerHTML += `<span class="card-tag">${tag}</span>`
         });
         card.querySelector(".more-info").addEventListener("click", () => showModal(recipe));
+        if(JSON.parse(localStorage.getItem("status")) == "Guest"){
+            card.querySelector('.save-recipe').disabled = true
+            card.querySelector('.save-recipe').title = "Login for this feature"
+        }
         cardContainer.appendChild(card);
     });
 }
